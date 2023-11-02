@@ -1,0 +1,706 @@
+
+    <!DOCTYPE html>
+    <html lang="zh-CN"
+            
+          
+    >
+    <head>
+    <meta charset="utf-8">
+    
+
+    
+
+    
+    <title>
+        Typora+阿里云对象存储OSS 自定义图床 |
+        
+        welcome!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+    
+<link rel="stylesheet" href="https://unpkg.com/@fortawesome/fontawesome-free/css/v4-font-face.min.css">
+
+    
+<link rel="stylesheet" href="/css/loader.css">
+
+    <meta name="description" content="Typora+阿里云对象存储OSS 自定义图床使用工具  typora 编辑器 PicGo 阿里云的对象存储（OSS）   配置阿里云对象存储（OSS）1.登录阿里云点击打开阿里云 2.找到对象存储（OSS） 3.购买对象存储（OSS） 第一步：选择产品价格    第二步：点击购买资源包    第三步：选择对象存储（OSS）产品规格    4.创建Bucket 第一步：点击管理控制台    第二步">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typora+阿里云对象存储OSS 自定义图床">
+<meta property="og:url" content="http://example.com/2023/11/02/Typora+%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E5%BA%8A/index.html">
+<meta property="og:site_name" content="welcome!">
+<meta property="og:description" content="Typora+阿里云对象存储OSS 自定义图床使用工具  typora 编辑器 PicGo 阿里云的对象存储（OSS）   配置阿里云对象存储（OSS）1.登录阿里云点击打开阿里云 2.找到对象存储（OSS） 3.购买对象存储（OSS） 第一步：选择产品价格    第二步：点击购买资源包    第三步：选择对象存储（OSS）产品规格    4.创建Bucket 第一步：点击管理控制台    第二步">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/dc3ed78b71e31a88d7bf5d734a572907.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/2b27201c8c81330e16d13cac4d17847e.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/5d3a49669a6a1e2fbf1edfec602a28c4.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/e5bbc5962b9c25d374c032587e4ffc0a.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/3440c3f8cf39473f0707b23055125e09.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/81707a9d8b6a43ab87e9a3f1b4624ddb.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/d2ba34091ced6c000e89d528022113de.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/9cca31185b02f52382f4ed615a34c7cc.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/d995d3f5de0e29e4393d8c39651a98d5.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/e4594c4576ec8ad3630457fbc10fa245.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/590345366d05c43da862b6bf3fae5ade.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/2625227ecc2a80c5e1e0855bc076feee.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/422721b885c466d4caa342deb8744402.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/5e0f5fc82bf082a232ec7a3d41154a92.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/33927c18febbaa5364d63e50e9f3cd03.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/fbdf22cab4912bb93140138efe5b6da2.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/044bb0bf66ab88e81b3b4ca396f84015.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/ab7e081cad63a62d1dfbaca656b51e4a.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/b696f810e9a7519b1ce0d628d6d0944d.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/ba6ca5701b19330f8f1bc854799dfdae.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/ca4df443f5cedd210127fe972a6ff342.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/87dbe3b76946015d79425d514d16f63e.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/b038c67e474a37b8443b5be40490a390.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/8942b3f057fab24e317c106c7c1d46a4.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/fe3dc951b5ebf38f9b276aec2e9678c3.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/cd12d10b2135fd1e0b7147ccdc09f0e0.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/01a5e3e889669c6be640f59e8e44871e.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/7d6ee6099e5dcc03d031211d017030f5.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/d42795d033abb758e2b69c0f02b63e7f.png">
+<meta property="og:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/4ed4304b5013a8c9c8022c3fdc8d91b4.png">
+<meta property="article:published_time" content="2023-11-02T01:28:09.043Z">
+<meta property="article:modified_time" content="2023-11-02T01:39:47.574Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="阿里云">
+<meta property="article:tag" content="阿里云对象存储">
+<meta property="article:tag" content="阿里云OSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/dc3ed78b71e31a88d7bf5d734a572907.png">
+    
+        <link rel="alternate" href="/atom.xml" title="welcome!" type="application/atom+xml">
+    
+    
+        <link rel="shortcut icon" href="/images/favicon.ico">
+    
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/typeface-source-code-pro@1.1.13/index.css">
+
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    
+    
+    
+    
+    
+<script src="https://unpkg.com/pace-js@1.2.4/pace.min.js"></script>
+
+    
+        
+<link rel="stylesheet" href="https://unpkg.com/wowjs@1.1.3/css/libs/animate.css">
+
+        
+<script src="https://unpkg.com/wowjs@1.1.3/dist/wow.min.js"></script>
+
+        <script>
+          new WOW({
+            offset: 0,
+            mobile: true,
+            live: false
+          }).init();
+        </script>
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+    <body>
+    
+<div id='loader'>
+  <div class="loading-left-bg"></div>
+  <div class="loading-right-bg"></div>
+  <div class="spinner-box">
+    <div class="loading-taichi">
+      <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+      <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+      <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+      <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+    </svg>
+    </div>
+    <div class="loading-word">少女祈祷中...</div>
+  </div>
+</div>
+</div>
+
+<script>
+  const endLoading = function() {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loader').classList.add("loading");
+  }
+  window.addEventListener('load', endLoading);
+  document.getElementById('loader').addEventListener('click', endLoading);
+</script>
+
+
+    <div id="container">
+        <div id="wrap">
+            <header id="header">
+    
+        <img data-src="/images/banner.jpg" data-sizes="auto" alt="Typora+阿里云对象存储OSS 自定义图床" class="lazyload">
+    
+    <div id="header-outer" class="outer">
+        <div id="header-title" class="inner">
+            <div id="logo-wrap">
+                
+                    
+                    
+                        <a href="/" id="logo"><h1>Typora+阿里云对象存储OSS 自定义图床</h1></a>
+                    
+                
+            </div>
+            
+                
+                
+            
+        </div>
+        <div id="header-inner">
+            <nav id="main-nav">
+                <a id="main-nav-toggle" class="nav-icon"></a>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/">首页</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/archives">归档</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/about">关于</a>
+                    </span>
+                
+                    <span class="main-nav-link-wrap">
+                        <span class="main-nav-icon"></span>
+                        <a class="main-nav-link" href="/friend">友链</a>
+                    </span>
+                
+            </nav>
+            <nav id="sub-nav">
+                
+                    <a id="nav-rss-link" class="nav-icon" href="/atom.xml"
+                       title="RSS 订阅"></a>
+                
+                
+            </nav>
+            <div id="search-form-wrap">
+                <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+            </div>
+        </div>
+    </div>
+</header>
+
+            <div id="content" class="outer">
+                <section id="main"><article id="post-Typora+阿里云对象存储OSS 自定义图床" class="h-entry article article-type-post"
+         itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <div class="article-inner">
+        <div class="article-meta">
+            <div class="article-date wow slideInLeft">
+    <a href="/2023/11/02/Typora+%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E5%BA%8A/" class="article-date-link">
+        <time datetime="2023-11-02T01:28:09.043Z"
+              itemprop="datePublished">2023-11-02</time>
+    </a>
+</div>
+
+            
+    <div class="article-category wow slideInLeft">
+        <a class="article-category-link" href="/categories/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a>
+    </div>
+
+
+        </div>
+        <div class="hr-line"></div>
+        
+
+        <div class="e-content article-entry" itemprop="articleBody">
+            
+                <h1 id="Typora-阿里云对象存储OSS-自定义图床"><a href="#Typora-阿里云对象存储OSS-自定义图床" class="headerlink" title="Typora+阿里云对象存储OSS 自定义图床"></a>Typora+阿里云对象存储OSS 自定义图床</h1><h1 id="使用工具"><a href="#使用工具" class="headerlink" title="使用工具"></a>使用工具</h1><blockquote>
+<ol>
+<li>typora 编辑器</li>
+<li>PicGo</li>
+<li>阿里云的对象存储（OSS）</li>
+</ol>
+</blockquote>
+<h1 id="配置阿里云对象存储（OSS）"><a href="#配置阿里云对象存储（OSS）" class="headerlink" title="配置阿里云对象存储（OSS）"></a>配置阿里云对象存储（OSS）</h1><h2 id="1-登录阿里云"><a href="#1-登录阿里云" class="headerlink" title="1.登录阿里云"></a>1.登录阿里云</h2><p><a target="_blank" rel="noopener" href="https://www.aliyun.com/">点击打开阿里云</a></p>
+<h2 id="2-找到对象存储（OSS）"><a href="#2-找到对象存储（OSS）" class="headerlink" title="2.找到对象存储（OSS）"></a>2.找到对象存储（OSS）</h2><p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/dc3ed78b71e31a88d7bf5d734a572907.png" alt="image-20230612210854474"></p>
+<h2 id="3-购买对象存储（OSS）"><a href="#3-购买对象存储（OSS）" class="headerlink" title="3.购买对象存储（OSS）"></a>3.购买对象存储（OSS）</h2><blockquote>
+<p>第一步：选择<strong>产品价格</strong></p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/2b27201c8c81330e16d13cac4d17847e.png" alt="image-20230612211422854"></p>
+<blockquote>
+<p>第二步：点击<strong>购买资源包</strong></p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/5d3a49669a6a1e2fbf1edfec602a28c4.png" alt="image-20230612211905847"></p>
+<blockquote>
+<p>第三步：选择对象存储（OSS）产品规格</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/e5bbc5962b9c25d374c032587e4ffc0a.png" alt="image-20230612212218211"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/3440c3f8cf39473f0707b23055125e09.png" alt="image-20230612212318216"></p>
+<h2 id="4-创建Bucket"><a href="#4-创建Bucket" class="headerlink" title="4.创建Bucket"></a>4.创建Bucket</h2><blockquote>
+<p>第一步：点击<strong>管理控制台</strong></p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/81707a9d8b6a43ab87e9a3f1b4624ddb.png" alt="image-20230612212923396"></p>
+<blockquote>
+<p>第二步：创建Bucket</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/d2ba34091ced6c000e89d528022113de.png" alt="image-20230612213102155"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/9cca31185b02f52382f4ed615a34c7cc.png" alt="image-20230612213550877"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/d995d3f5de0e29e4393d8c39651a98d5.png" alt="image-20230612213634047"></p>
+<blockquote>
+<p>点击“确定”即可</p>
+</blockquote>
+<h2 id="5-创建AccessKey"><a href="#5-创建AccessKey" class="headerlink" title="5.创建AccessKey"></a>5.创建AccessKey</h2><blockquote>
+<p>第一步：点击右上角自己的头像</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/e4594c4576ec8ad3630457fbc10fa245.png" alt="image-20230612214203415"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/590345366d05c43da862b6bf3fae5ade.png" alt="image-20230612214240235"></p>
+<blockquote>
+<p>通过验证，创建AccessKey</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/2625227ecc2a80c5e1e0855bc076feee.png" alt="image-20230612214542400"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/422721b885c466d4caa342deb8744402.png" alt="image-20230612214824636"></p>
+<blockquote>
+<p>AccessKey ID 一定要复制到文本中，保存下来</p>
+<p>AccessKey Secret 一定要复制到文本中，保存下来</p>
+</blockquote>
+<h1 id="安装即配置PicGo"><a href="#安装即配置PicGo" class="headerlink" title="安装即配置PicGo"></a>安装即配置PicGo</h1><h2 id="1-下载PicGo"><a href="#1-下载PicGo" class="headerlink" title="1.下载PicGo"></a>1.下载PicGo</h2><blockquote>
+<p>由于PicGo在github上面，所以需要魔法下载，当然大家也可以使用国内的一些镜像来下载。</p>
+</blockquote>
+<blockquote>
+<p>第一步：点击下载</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://molunerfinn.com/PicGo/">点击下载链接</a></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/5e0f5fc82bf082a232ec7a3d41154a92.png" alt="image-20230612215432057"></p>
+<blockquote>
+<p>第二步：往下拉<strong>选择2.3.1版本</strong></p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/33927c18febbaa5364d63e50e9f3cd03.png" alt="image-20230612220045429"></p>
+<blockquote>
+<p>第三步：往下拉，选择<strong>对应系统的安装包</strong></p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/fbdf22cab4912bb93140138efe5b6da2.png" alt="image-20230612220325594"></p>
+<h2 id="2-安装PicGo"><a href="#2-安装PicGo" class="headerlink" title="2.安装PicGo"></a>2.安装PicGo</h2><blockquote>
+<p>第一步：点击下载的exe文件</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/044bb0bf66ab88e81b3b4ca396f84015.png" alt="image-20230612222516118"></p>
+<blockquote>
+<p>第二步：开始安装</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/ab7e081cad63a62d1dfbaca656b51e4a.png" alt="image-20230612222607508"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/b696f810e9a7519b1ce0d628d6d0944d.png" alt="image-20230612222734155"></p>
+<p>等待安装成功即可。</p>
+<h2 id="3-配置PicGo"><a href="#3-配置PicGo" class="headerlink" title="3.配置PicGo"></a>3.配置PicGo</h2><blockquote>
+<p>第一步：打开安装好的PicGo，选择图床</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/ba6ca5701b19330f8f1bc854799dfdae.png" alt="image-20230613074028209"></p>
+<blockquote>
+<p>第二步：设置Server</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/ca4df443f5cedd210127fe972a6ff342.png" alt="image-20230613074133661"></p>
+<p>设置内容</p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/87dbe3b76946015d79425d514d16f63e.png" alt="image-20230613074211369"></p>
+<blockquote>
+<p>第三步：选择阿里云图床，进行配置</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/b038c67e474a37b8443b5be40490a390.png" alt="image-20230613074828511"></p>
+<p><strong>设置存储区域的参数讲解</strong></p>
+<p><code>第一步</code>：打开阿里云，进入我们的Bucket中</p>
+<p><code>第二步</code>：  选择<strong>概览</strong></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/8942b3f057fab24e317c106c7c1d46a4.png" alt="image-20230613075555881"></p>
+<p><code>第三步</code>：往下拉，选择外网访问</p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/fe3dc951b5ebf38f9b276aec2e9678c3.png" alt="image-20230613075755896"></p>
+<p><code>第四步</code>：设置参数</p>
+<p>将<code>oss-cn-beijing.aliyuncs.com</code>修改一下，变成<code>oss-cn-beijing</code>后当做PicGo的参数传入<strong>设置存储区域</strong>。</p>
+<p><strong>设置存储路径参数讲解</strong></p>
+<blockquote>
+<p>这个参数是指定我们在PicGo中上传图片时，将图片传到我们指定Bucket中的特定文件夹内。</p>
+<p>比如：</p>
+<p> 我们在阿里云设置的Bucket中创建一个文件夹，叫做typora-tu-chuang文件夹，我们在picgo中指定这个文件后，我们的图片之后上传就会传到这个文件夹内</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/cd12d10b2135fd1e0b7147ccdc09f0e0.png" alt="image-20230613075411107"></p>
+<p>可以通过设置存储路径设置，将不同笔记的图片存放在不同的Bucket文件夹内</p>
+<h2 id="4-测试"><a href="#4-测试" class="headerlink" title="4.测试"></a>4.测试</h2><p>打开picgo随便上传一张图片，看是否成功</p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/01a5e3e889669c6be640f59e8e44871e.png" alt="image-20230613080225827"></p>
+<h1 id="在-Typora-中设置PicGo"><a href="#在-Typora-中设置PicGo" class="headerlink" title="在 Typora 中设置PicGo"></a>在 Typora 中设置PicGo</h1><h2 id="1-安装并打开-Typora"><a href="#1-安装并打开-Typora" class="headerlink" title="1.安装并打开 Typora"></a>1.安装并打开 Typora</h2><blockquote>
+<p>这一步跳过，小伙伴们可以在网上搜索，有非常多的教程</p>
+</blockquote>
+<h2 id="2-打开图像设置"><a href="#2-打开图像设置" class="headerlink" title="2.打开图像设置"></a>2.打开图像设置</h2><p>点击<code>文件</code>–&gt;<code>偏好设置</code>–&gt;<code>图像</code></p>
+<h2 id="3-设置选择"><a href="#3-设置选择" class="headerlink" title="3.设置选择"></a>3.设置选择</h2><p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/7d6ee6099e5dcc03d031211d017030f5.png" alt="image-20230613080908651"></p>
+<h2 id="4-使用"><a href="#4-使用" class="headerlink" title="4.使用"></a>4.使用</h2><blockquote>
+<p>第一步：将图片拖入typora中</p>
+</blockquote>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/d42795d033abb758e2b69c0f02b63e7f.png" alt="image-20230613081107801"></p>
+<p><img src="https://typora-bed-of-pictures.oss-cn-beijing.aliyuncs.com/typora-tu-chuang/4ed4304b5013a8c9c8022c3fdc8d91b4.png" alt="image-20230613081159892"></p>
+
+            
+        </div>
+        <footer class="article-footer">
+            <a data-url="http://example.com/2023/11/02/Typora+%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E5%BA%8A/" data-id="clogiyue300033wuzhqlba5n8" data-title="Typora+阿里云对象存储OSS 自定义图床"
+               class="article-share-link">分享</a>
+            
+                <a href="/2023/11/02/Typora+%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E5%BA%8A/#comments" class="article-comment-link">
+                    <span class="post-comments-count valine-comment-count" data-xid="/2023/11/02/Typora+%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8OSS%20%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9B%BE%E5%BA%8A/"
+                          itemprop="commentCount"></span>
+                    留言
+                </a>
+            
+            
+            
+            
+    <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" rel="tag">阿里云</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91OSS/" rel="tag">阿里云OSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" rel="tag">阿里云对象存储</a></li></ul>
+
+
+        </footer>
+    </div>
+    
+        
+    <nav id="article-nav" class="wow fadeInUp">
+        
+        
+            <div class="article-nav-link-wrap article-nav-link-right">
+                
+                    
+                    
+                        <img data-src="/images/banner.jpg" data-sizes="auto" alt="Hello World"
+                             class="lazyload">
+                    
+                
+                <a href="/2013/12/24/hello-world/"></a>
+                <div class="article-nav-caption">后一篇</div>
+                <h3 class="article-nav-title">
+                    
+                        Hello World
+                    
+                </h3>
+            </div>
+        
+    </nav>
+
+
+    
+</article>
+
+
+    <section id="comments" class="vcomment">
+
+    </section>
+
+
+
+
+
+
+
+
+
+
+</section>
+                
+                    <aside id="sidebar">
+    <div class="sidebar-wrap wow fadeInRight">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="John Doe" class="lazyload">
+            <div class="sidebar-author-name">John Doe</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">2</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">1</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">分类</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%98%BF%E9%87%8C%E4%BA%91/">阿里云</a></li></ul>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">标签云</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91/" style="font-size: 10px;">阿里云</a> <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91OSS/" style="font-size: 10px;">阿里云OSS</a> <a href="/tags/%E9%98%BF%E9%87%8C%E4%BA%91%E5%AF%B9%E8%B1%A1%E5%AD%98%E5%82%A8/" style="font-size: 10px;">阿里云对象存储</a>
+        </div>
+    </div>
+
+
+    
+        
+    <div class="widget-wrap wow fadeInRight">
+        <h3 class="widget-title">归档</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/11/">十一月 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/12/">十二月 2013</a></li></ul>
+        </div>
+    </div>
+
+
+    
+</aside>
+
+                
+            </div>
+            <footer id="footer" class="wow fadeInUp">
+    <div style="width: 100%; overflow: hidden"><div class="footer-line"></div></div>
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            
+            <div>
+                <span class="icon-copyright"></span>
+                2020-2023
+                <span class="footer-info-sep"></span>
+                John Doe
+            </div>
+            
+                <div>
+                    基于&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+                    Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+                </div>
+            
+            
+                <div>
+                    <span class="icon-brush"></span>
+                    663
+                    &nbsp;|&nbsp;
+                    <span class="icon-coffee"></span>
+                    00:03
+                </div>
+            
+            
+                <div>
+                    <span class="icon-eye"></span>
+                    <span id="busuanzi_container_site_pv">总访问量&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+                    &nbsp;|&nbsp;
+                    <span class="icon-user"></span>
+                    <span id="busuanzi_container_site_uv">总访客量&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+                </div>
+            
+        </div>
+    </div>
+</footer>
+
+        </div>
+        <nav id="mobile-nav">
+    <div class="sidebar-wrap">
+        <div class="sidebar-author">
+            <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="John Doe" class="lazyload">
+            <div class="sidebar-author-name">John Doe</div>
+            <div class="sidebar-description"></div>
+        </div>
+        <div class="sidebar-state">
+            <div class="sidebar-state-article">
+                <div>文章</div>
+                <div class="sidebar-state-number">2</div>
+            </div>
+            <div class="sidebar-state-category">
+                <div>分类</div>
+                <div class="sidebar-state-number">1</div>
+            </div>
+            <div class="sidebar-state-tag">
+                <div>标签</div>
+                <div class="sidebar-state-number">3</div>
+            </div>
+        </div>
+        <div class="sidebar-social">
+            
+                <div class=icon-github>
+                    <a href=https://github.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-google>
+                    <a href=https://plus.google.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-twitter>
+                    <a href=https://twitter.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+                <div class=icon-facebook>
+                    <a href=https://www.facebook.com/yourname itemprop="url" target="_blank"></a>
+                </div>
+            
+        </div>
+        <div class="sidebar-menu">
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">首页</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/archives"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">归档</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/about"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">关于</div>
+                </div>
+            
+                <div class="sidebar-menu-link-wrap">
+                    <a class="sidebar-menu-link-dummy" href="/friend"></a>
+                    <span class="sidebar-menu-icon"></span>
+                    <div class="sidebar-menu-link">友链</div>
+                </div>
+            
+        </div>
+    </div>
+</nav>
+
+        
+<script src="https://unpkg.com/jquery@3.7.0/dist/jquery.min.js"></script>
+
+
+<script src="https://unpkg.com/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://unpkg.com/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+
+
+
+    
+<script src="https://unpkg.com/busuanzi@2.3.0/bsz.pure.mini.js"></script>
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+    
+<script src="https://unpkg.com/valine@1.5.1/dist/Valine.min.js"></script>
+
+    <script>
+        var GUEST_INFO = ['nick', 'mail', 'link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function (item) {
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        var recordIP = JSON.parse('true');
+        var highlight = JSON.parse('true');
+
+        new Valine({
+            el: '.vcomment',
+            appId: "GJJXGDl45nvvXC839rGN4u6t-gzGzoHsz",
+            appKey: "aECPHqmRjLgkKl1ETlg0oqMZ",
+            placeholder: "Just go go",
+            pageSize: '10',
+            avatar: 'mp',
+            lang: 'zh-cn',
+            recordIP: recordIP,
+            highlight: highlight
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div class="site-search">
+        <div class="algolia-popup popup">
+            <div class="algolia-search">
+                <span class="algolia-search-input-icon"></span>
+                <div class="algolia-search-input" id="algolia-search-input"></div>
+            </div>
+
+            <div class="algolia-results">
+                <div id="algolia-stats"></div>
+                <div id="algolia-hits"></div>
+                <div id="algolia-pagination" class="algolia-pagination"></div>
+            </div>
+
+            <span class="popup-btn-close"></span>
+        </div>
+    </div>
+    <!-- hexo injector body_end start -->
+<script src="/js/insertHighlight.js"></script>
+<!-- hexo injector body_end end --></body>
+    </html>
+

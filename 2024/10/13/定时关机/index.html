@@ -26,15 +26,15 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="电脑定时关机一次性定时任务注：一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令  在 xxx 秒后关机 123456shutdown -s -t xxx&#x2F;&#x2F; -s ：表示本机  &#x2F;&#x2F; -t xxx ：表示 xxx 秒后  &#x2F;&#x2F; 示例：shutdown -s -t 3600   表示本机 3600 秒后关机  在时间为 xxx 时关机 123456@ xxx shutd">
+  <meta name="description" content="电脑定时关机一次性定时任务注：  一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令。比如我今天设置了定时关机，那么明天我想要定时关机就需要再次设置 同一次开关机设置定时任务请先取消任务再设置。比如 我设置了 3600 秒后关机，后来觉得时间太长了想设置 1800 秒，那么就要先执行 shutdown -a 然后再执行 showdown -s -t 1800   在 x">
 <meta property="og:type" content="article">
 <meta property="og:title" content="定时关机">
 <meta property="og:url" content="http://example.com/2024/10/13/%E5%AE%9A%E6%97%B6%E5%85%B3%E6%9C%BA/index.html">
 <meta property="og:site_name" content="糖柒柒の小窝~">
-<meta property="og:description" content="电脑定时关机一次性定时任务注：一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令  在 xxx 秒后关机 123456shutdown -s -t xxx&#x2F;&#x2F; -s ：表示本机  &#x2F;&#x2F; -t xxx ：表示 xxx 秒后  &#x2F;&#x2F; 示例：shutdown -s -t 3600   表示本机 3600 秒后关机  在时间为 xxx 时关机 123456@ xxx shutd">
+<meta property="og:description" content="电脑定时关机一次性定时任务注：  一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令。比如我今天设置了定时关机，那么明天我想要定时关机就需要再次设置 同一次开关机设置定时任务请先取消任务再设置。比如 我设置了 3600 秒后关机，后来觉得时间太长了想设置 1800 秒，那么就要先执行 shutdown -a 然后再执行 showdown -s -t 1800   在 x">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-13T10:26:03.000Z">
-<meta property="article:modified_time" content="2024-10-13T11:18:21.431Z">
+<meta property="article:modified_time" content="2024-10-13T11:26:52.712Z">
 <meta property="article:author" content="糖柒柒">
 <meta name="twitter:card" content="summary">
   
@@ -202,7 +202,11 @@
     <div class="e-content article-entry" itemprop="articleBody">
       
       
-        <h1 id="电脑定时关机"><a href="#电脑定时关机" class="headerlink" title="电脑定时关机"></a>电脑定时关机</h1><h2 id="一次性定时任务"><a href="#一次性定时任务" class="headerlink" title="一次性定时任务"></a>一次性定时任务</h2><p>注：一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令</p>
+        <h1 id="电脑定时关机"><a href="#电脑定时关机" class="headerlink" title="电脑定时关机"></a>电脑定时关机</h1><h2 id="一次性定时任务"><a href="#一次性定时任务" class="headerlink" title="一次性定时任务"></a>一次性定时任务</h2><p>注：</p>
+<ul>
+<li>一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令。比如我今天设置了定时关机，那么明天我想要定时关机就需要再次设置</li>
+<li>同一次开关机设置定时任务请先取消任务再设置。比如 我设置了 3600 秒后关机，后来觉得时间太长了想设置 1800 秒，那么就要先执行 <code>shutdown -a</code> 然后再执行 <code>showdown -s -t 1800</code></li>
+</ul>
 <ol>
 <li><p>在 xxx 秒后关机</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shutdown -s -t xxx</span><br><span class="line"></span><br><span class="line">// -s ：表示本机  </span><br><span class="line">// -t xxx ：表示 xxx 秒后  </span><br><span class="line"></span><br><span class="line">// 示例：shutdown -s -t 3600   表示本机 3600 秒后关机</span><br></pre></td></tr></table></figure>
@@ -364,7 +368,7 @@
       
         <div>
           <span class="icon-brush"></span>
-          299
+          393
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
           00:02

@@ -197,23 +197,20 @@
     <div class="post-info">
       <div class="post-meta">
         <span><span class="icon-calendar"></span>2024-10-13</span>
-        <span><span class="icon-pencil"></span>283 字</span>
+        <span><span class="icon-pencil"></span>377 字</span>
         <span><span class="icon-clock"></span>1 分钟</span>
       </div>
       <h2 class="post-title">定时关机</h2>
       <article class="post-article">
         
-          电脑定时关机一次性定时任务注：一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令
+          电脑定时关机一次性定时任务注：
+
+一次性定时任务，只执行一次，每当想要重新设置定时关机任务时都要重新执行一次命令。比如我今天设置了定时关机，那么明天我想要定时关机就需要再次设置
+同一次开关机设置定时任务请先取消任务再设置。比如 我设置了 3600 秒后关机，后来觉得时间太长了想设置 1800 秒，那么就要先执行 shutdown -a 然后再执行 showdown -s -t 1800
+
 
 在 xxx 秒后关机
-123456shutdown -s -t xxx// -s ：表示本机  // -t xxx ：表示 xxx 秒后  // 示例：shutdown -s -t 3600   表示本机 3600 秒后关机
-
-在时间为 xxx 时关机
-123456@ xxx shutdown -s// @ xxx 表示在 xxx 时// -s ：表示本机// 示例：@ 12:00 shutdown -s  表示本机将在 12:00 关机
-
-注意两者有很大区别：  
-
-在 xxx 秒
+123456shutdown -s -t xxx// -s ：表示本机  // -t xxx ：表示 xxx 秒后  // 示例：shutdown -s -t 3600   表示本机 
         
       </article>
     </div>
@@ -341,7 +338,7 @@
       
         <div>
           <span class="icon-brush"></span>
-          299
+          393
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
           00:02
